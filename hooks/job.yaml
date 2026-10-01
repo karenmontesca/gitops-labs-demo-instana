@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: restart-instana-agent
+  namespace: instana-agent
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-instana-hook
+      restartPolicy: Never
+      containers:
+        - name: kubectl
+          image: bitnami/kubectl:latest
+          command:
+            - sh
+            - -c
+            - kubectl rollout restart daemonset instana-agent -n instana-agent

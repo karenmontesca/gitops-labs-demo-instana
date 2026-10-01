@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-instana-hook-binding
+  namespace: instana-agent
+subjects:
+  - kind: ServiceAccount
+    name: argocd-instana-hook
+    namespace: instana-agent
+roleRef:
+  kind: Role
+  name: restart-daemonset
+  apiGroup: rbac.authorization.k8s.io

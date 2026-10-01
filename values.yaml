@@ -1,0 +1,14 @@
+agent:
+  key: "XXXX"
+  downloadKey: "XXXX"
+  endpointHost: "ingress-orange-saas.instana.io"
+  endpointPort: 443
+
+  configuration_yaml: |
+    # Configuración de sensores de Instana
+
+cluster:
+  name: "lab-git"
+
+zone:
+  name: "segunda-k3-km"
